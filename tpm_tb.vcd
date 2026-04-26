@@ -1,0 +1,37 @@
+$date
+	Sat Apr 25 10:25:44 2026
+$end
+$version
+	QuestaSim Version 2021.2_1
+$end
+$timescale
+	1ps
+$end
+
+$scope module tpm_tb $end
+
+$scope task spi_clock_bit $end
+$upscope $end
+
+$scope task spi_byte $end
+$upscope $end
+
+$scope task spi_write $end
+$upscope $end
+
+$scope task spi_read $end
+$upscope $end
+
+$scope task wait_irq $end
+$upscope $end
+
+$scope task pack32 $end
+$upscope $end
+
+$scope task pack16 $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+$end

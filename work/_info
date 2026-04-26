@@ -1,0 +1,267 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+!s11f vlog 2021.2_1 2021.05, May 15 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/media/abdallah-salah/eng/micro_tpm_v2
+T_opt
+!s110 1777085979
+V6ehhG^UZSd^iz]aAHC9X81
+04 6 4 work tpm_tb fast 0
+=1-000ae431a4f1-69ec2e1a-d42f6-87af
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work
+Z2 tCvgOpt 0
+n@_opt
+OL;O;2021.2_1;73
+R1
+vsha256_core
+Z3 !s110 1777101934
+!i10b 1
+!s100 ZD4=J<TTA3JMlLn=FVoWg2
+IV:NdTAig33l4fSHOn]FVc2
+R1
+Z4 w1777072925
+8cores/sha256/src/rtl/sha256_core.v
+Fcores/sha256/src/rtl/sha256_core.v
+!i122 3
+L0 42 509
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2021.2_1;73
+r1
+!s85 0
+31
+Z7 !s108 1777101933.000000
+!s107 cores/sha256/src/rtl/sha256_k_constants.v|cores/sha256/src/rtl/sha256_w_mem.v|cores/sha256/src/rtl/sha256_core.v|rtl/tpm_pcr_bank.v|rtl/tpm_trng.v|rtl/tpm_mem.v|rtl/tpm_sha256_wrap.v|rtl/tpm_cmd_proc.v|rtl/tpm_spi_slave.v|rtl/tpm_top.v|tb/tpm_tb.v|
+Z8 !s90 tb/tpm_tb.v|rtl/tpm_top.v|rtl/tpm_spi_slave.v|rtl/tpm_cmd_proc.v|rtl/tpm_sha256_wrap.v|rtl/tpm_mem.v|rtl/tpm_trng.v|rtl/tpm_pcr_bank.v|cores/sha256/src/rtl/sha256_core.v|cores/sha256/src/rtl/sha256_w_mem.v|cores/sha256/src/rtl/sha256_k_constants.v|
+!i113 0
+Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vsha256_k_constants
+R3
+!i10b 1
+!s100 UKc^>H71Jgj=F[LS^1GU12
+IfXF`][m30<j@Q6UfSIVeT3
+R1
+R4
+8cores/sha256/src/rtl/sha256_k_constants.v
+Fcores/sha256/src/rtl/sha256_k_constants.v
+!i122 3
+L0 41 90
+R5
+R6
+r1
+!s85 0
+31
+R7
+Z10 !s107 cores/sha256/src/rtl/sha256_k_constants.v|cores/sha256/src/rtl/sha256_w_mem.v|cores/sha256/src/rtl/sha256_core.v|rtl/tpm_pcr_bank.v|rtl/tpm_trng.v|rtl/tpm_mem.v|rtl/tpm_sha256_wrap.v|rtl/tpm_cmd_proc.v|rtl/tpm_spi_slave.v|rtl/tpm_top.v|tb/tpm_tb.v|
+R8
+!i113 0
+R9
+R2
+vsha256_w_mem
+R3
+!i10b 1
+!s100 ZETPc4`Pk0CzSk89:TjL]3
+IF2]`TdF7Y8O;nW^LK?;Eo3
+R1
+R4
+8cores/sha256/src/rtl/sha256_w_mem.v
+Fcores/sha256/src/rtl/sha256_w_mem.v
+!i122 3
+L0 42 196
+R5
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 0
+R9
+R2
+vtpm_cmd_proc
+R3
+!i10b 1
+!s100 IDeClQ8]e5OHCacEDnD6_1
+I<gKJlSTGNSP51nOa3zfSG0
+R1
+Z11 w1777061864
+8rtl/tpm_cmd_proc.v
+Frtl/tpm_cmd_proc.v
+!i122 3
+L0 61 601
+R5
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 0
+R9
+R2
+vtpm_mem
+R3
+!i10b 1
+!s100 [m[10:J09=_Nj=Dzh`E9R0
+INY21czYRJaNdWG=c2kjK80
+R1
+R11
+8rtl/tpm_mem.v
+Frtl/tpm_mem.v
+!i122 3
+L0 18 32
+R5
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 0
+R9
+R2
+vtpm_pcr_bank
+R3
+!i10b 1
+!s100 [X9U4=O==5jIzPl>5;^b^2
+IAcGOf9>Ah0f>0YG]1;_J]2
+R1
+R11
+8rtl/tpm_pcr_bank.v
+Frtl/tpm_pcr_bank.v
+!i122 3
+L0 16 37
+R5
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 0
+R9
+R2
+vtpm_sha256_wrap
+R3
+!i10b 1
+!s100 DkBP<dDJ8mYSFUY[[Z3Wh2
+I;H]oWWgBH:TkMcWR88BfA3
+R1
+R11
+8rtl/tpm_sha256_wrap.v
+Frtl/tpm_sha256_wrap.v
+!i122 3
+L0 27 129
+R5
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 0
+R9
+R2
+vtpm_spi_slave
+R3
+!i10b 1
+!s100 2EZbIO[KhY?S0YcYf_DNh0
+Ibz@_Po5G:G4E^OU@4bNe>1
+R1
+w1777080775
+8rtl/tpm_spi_slave.v
+Frtl/tpm_spi_slave.v
+!i122 3
+L0 32 201
+R5
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 0
+R9
+R2
+vtpm_tb
+R3
+!i10b 1
+!s100 naIfOMQ6X5MJVH626FYRQ3
+IgBMGIfOBH8P;2;zCT2lS13
+R1
+R11
+8tb/tpm_tb.v
+Ftb/tpm_tb.v
+!i122 3
+L0 8 215
+R5
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 0
+R9
+R2
+vtpm_top
+R3
+!i10b 1
+!s100 Yl>O?V?63d]Y^AMMFHPaW1
+IlHSHekTjX;Z1QQ@Y@VEMB2
+R1
+w1777075027
+8rtl/tpm_top.v
+Frtl/tpm_top.v
+!i122 3
+L0 35 145
+R5
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 0
+R9
+R2
+vtpm_trng
+R3
+!i10b 1
+!s100 H_45]Na=?5j;b40gDd5Kn1
+I:HFhmh[T@DWFm?hCV@fS30
+R1
+w1777079518
+8rtl/tpm_trng.v
+Frtl/tpm_trng.v
+!i122 3
+L0 15 98
+R5
+R6
+r1
+!s85 0
+31
+R7
+R10
+R8
+!i113 0
+R9
+R2
