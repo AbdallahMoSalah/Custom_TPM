@@ -72,13 +72,13 @@ exposes a simple start/done handshake.
 
 ## GPIO Pin Usage
 
-| Pin | I/O | Signal | Notes |
-|---|---|---|---|
-| `spi_csn` | Input | Chip-select | Active-low |
-| `spi_sck` | Input | SPI clock | Mode 0 (idle low, sample rising) |
-| `spi_mosi` | Input | Host → chip | MSB first |
-| `spi_miso` | Output | Chip → host | MSB first |
-| `irq` | Output | Interrupt | High = response ready |
+| Pin         | I/O    | Signal      | Notes |
+|-------------|--------|-------------|---|
+| `spi_csn`   | Input  | Chip-select | Active-low |
+| `spi_sck`   | Input  | SPI clock   | Mode 0 (idle low, sample rising) |
+| `spi_mosi`  | Input  | Host → chip | MSB first |
+| `spi_miso`  | Output | Chip → host | MSB first |
+| `irq`       | Output | Interrupt   | High = response ready |
 
 **5 pins used total.** All other GPIO pins on the padframe are unused.
 

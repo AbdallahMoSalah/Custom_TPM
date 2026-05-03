@@ -11,7 +11,7 @@ module tpm_tb;
 // Clock and reset
 // ---------------------------------------------------------------------------
 reg clk = 0;
-always #5 clk = ~clk;   // 100 MHz system clock
+always #25 clk = ~clk;  // 20 MHz system clock (50 ns period)
 
 reg rstn = 0;
 initial begin #150 rstn = 1; end
@@ -40,19 +40,19 @@ tpm_top dut (
 
 // ---------------------------------------------------------------------------
 // SPI master tasks (mode 0, MSB first)
-// Each SPI bit takes 8 system clock cycles → max SPI = 12.5 MHz
-// ---------------------------------------------------------------------------
+// Each SPI bit takes ~10 system clock cycles (500ns) → SPI ≈ 2 MHz
+// Rule: SPI period must be >> 5× sys_clk so the 2-FF synchroniser sees edges.
 task spi_clock_bit;
     input  tx_bit;
     output rx_bit;
     begin
         spi_mosi = tx_bit;
-        #30;              // setup
+        #150;             // setup (3 sys clk)
         spi_sck  = 1;
-        #20;              // hold — sample MISO here
+        #150;             // hold — sample MISO here (3 sys clk)
         rx_bit   = spi_miso;
         spi_sck  = 0;
-        #30;
+        #150;
     end
 endtask
 
@@ -149,6 +149,15 @@ initial begin
 
     spi_write(12);
     wait_irq;
+    // DEBUG: dump RSP_BUF directly from memory before SPI read
+    $display("  [DBG] RSP_BUF[0..13] = %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X",
+        tpm_tb.dut.u_mem.mem[8'h80], tpm_tb.dut.u_mem.mem[8'h81],
+        tpm_tb.dut.u_mem.mem[8'h82], tpm_tb.dut.u_mem.mem[8'h83],
+        tpm_tb.dut.u_mem.mem[8'h84], tpm_tb.dut.u_mem.mem[8'h85],
+        tpm_tb.dut.u_mem.mem[8'h86], tpm_tb.dut.u_mem.mem[8'h87],
+        tpm_tb.dut.u_mem.mem[8'h88], tpm_tb.dut.u_mem.mem[8'h89],
+        tpm_tb.dut.u_mem.mem[8'h8A], tpm_tb.dut.u_mem.mem[8'h8B],
+        tpm_tb.dut.u_mem.mem[8'h8C], tpm_tb.dut.u_mem.mem[8'h8D]);
     spi_read(44);                   // 10 hdr + 2 outSize + 32 rand bytes
 
     rc = {rsp[6],rsp[7],rsp[8],rsp[9]};

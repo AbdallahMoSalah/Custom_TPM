@@ -31,4 +31,4 @@ vlog \
     cores/sha256/src/rtl/sha256_k_constants.v
 
 echo "[4] Running simulation with vsim..."
-vsim -c -do "run -all; quit" work.tpm_tb
+vsim -voptargs=+acc -c -do "run -all; quit" work.tpm_tb

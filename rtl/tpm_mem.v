@@ -11,7 +11,7 @@
 //   Phase EXEC      : Command processor owns Port B (reads CMD, writes RSP)
 //   Phase READ      : SPI slave owns Port A again (reads RSP_BUF)
 //
-// Both ports have 1-cycle read latency (registered output).
+// Port reads have 1-cycle latency (registered output). Writes are synchronous.
 // =============================================================================
 `timescale 1ns/1ps
 
@@ -22,7 +22,7 @@ module tpm_mem (
     input  wire [7:0] pa_addr,
     input  wire [7:0] pa_wdata,
     input  wire       pa_we,
-    output reg  [7:0] pa_rdata,
+    output wire  [7:0] pa_rdata,
 
     // Port B — command processor
     input  wire [7:0] pb_addr,
@@ -36,10 +36,11 @@ reg [7:0] mem [0:255];
 integer j;
 initial for (j=0; j<256; j=j+1) mem[j] = 8'h00;
 
+// Synchronous writes and registered reads
 always @(posedge clk) begin
     if (pa_we) mem[pa_addr] <= pa_wdata;
-    pa_rdata <= mem[pa_addr];
 end
+  assign  pa_rdata = mem[pa_addr];
 
 always @(posedge clk) begin
     if (pb_we) mem[pb_addr] <= pb_wdata;
