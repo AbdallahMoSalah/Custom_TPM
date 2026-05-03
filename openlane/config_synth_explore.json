@@ -1,0 +1,54 @@
+{
+    "meta": {
+        "version": 2,
+        "flow": "SynthesisExploration"
+    },
+
+    "//ABOUT": [
+        "═══════════════════════════════════════════════════════════",
+        "STEP 1 — Synthesis Exploration",
+        "Run: librelane --flow SynthesisExploration config_synth_explore.json",
+        "",
+        "LibreLane will try every combination of:",
+        "  SYNTH_STRATEGY × SYNTH_BUFFERING × SYNTH_SIZING",
+        "and produce a report table: area (µm²) vs WNS (ns).",
+        "",
+        "Pick the strategy row that gives the best area WITHOUT",
+        "negative WNS. Copy that SYNTH_STRATEGY value into",
+        "config_classic.json and run the full flow.",
+        "═══════════════════════════════════════════════════════════"
+    ],
+
+    "DESIGN_NAME": "project_macro",
+    "QUIT_ON_SYNTH_CHECKS": false,
+
+    "VERILOG_FILES": [
+        "dir::../rtl/tpm_top.v",
+        "dir::../rtl/tpm_spi_slave.v",
+        "dir::../rtl/tpm_cmd_proc.v",
+        "dir::../rtl/tpm_sha256_wrap.v",
+        "dir::../rtl/tpm_mem.v",
+        "dir::../rtl/tpm_trng.v",
+        "dir::../rtl/tpm_pcr_bank.v",
+        "dir::../cores/sha256/src/rtl/sha256_core.v",
+        "dir::../cores/sha256/src/rtl/sha256_w_mem.v",
+        "dir::../cores/sha256/src/rtl/sha256_k_constants.v",
+        "dir::../rtl/project_macro.v"
+    ],
+
+    "CLOCK_PORT":   "clk",
+    "CLOCK_PERIOD": 20.0,
+
+    "PDN_MULTILAYER": false,
+    "RT_MAX_LAYER": "met4",
+
+    "DEFAULT_CORNER": "max_ss_100C_1v60",
+
+    "FP_CORE_UTIL": 40,
+
+
+
+    "PNR_SDC_FILE":     "dir::pnr.sdc",
+    "SIGNOFF_SDC_FILE": "dir::signoff.sdc",
+    "FP_PIN_ORDER_CFG": "dir::pin_order.cfg"
+}
