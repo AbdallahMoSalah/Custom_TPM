@@ -17,7 +17,7 @@ echo "[2] Creating working library..."
 vlib work
 
 echo "[3] Compiling with vlog..."
-vlog \
+vlog +define+SIMULATION \
     tb/tpm_tb.v \
     rtl/tpm_top.v \
     rtl/tpm_spi_slave.v \

@@ -31,6 +31,15 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11f vlog 2021.2_1 2021.05, May 15 2021
 13
 !s112 1.1
@@ -40,15 +49,15 @@ R0
 cModel Technology
 Z1 d/media/abdallah-salah/eng/micro_tpm_v2
 T_opt
-!s110 1777843681
-V@F_XKc[03LzgE>4Eh`:ZT0
+!s110 1777855296
+V_I8^n=MBH0YCf?e:Pm6m[0
 Z2 04 6 4 work tpm_tb fast 0
-=1-000ae431a4f1-69f7bde1-2730-4bc0
+=1-000ae431a4f1-69f7eb40-3747b-1e5a5
 Z3 !s124 OEM100
-o-quiet -auto_acc_if_foreign -work work
-Z4 tCvgOpt 0
+Z4 o-quiet -auto_acc_if_foreign -work work +acc
+Z5 tCvgOpt 0
 n@_opt
-Z5 OL;O;2021.2_1;73
+Z6 OL;O;2021.2_1;73
 R1
 T_opt1
 !s110 1777849439
@@ -56,10 +65,10 @@ VFgVJP`c?a@`_KhDcCnUb[2
 04 16 4 work tpm_spi_slave_tb fast 0
 =1-000ae431a4f1-69f7d45e-acd3b-8735
 R3
-Z6 o-quiet -auto_acc_if_foreign -work work +acc
 R4
-n@_opt1
 R5
+n@_opt1
+R6
 R1
 T_opt2
 !s110 1777850217
@@ -67,186 +76,195 @@ V]7i4@P`8Jcg_M[k`V9dWK1
 R2
 =1-000ae431a4f1-69f7d768-237f0-8a58
 R3
-R6
 R4
-n@_opt2
 R5
+n@_opt2
+R6
+R1
 vsha256_core
-Z7 !s110 1777850206
+Z7 !s110 1777855318
 !i10b 1
 !s100 ZD4=J<TTA3JMlLn=FVoWg2
-IV:NdTAig33l4fSHOn]FVc2
-R1
-Z8 w1777072925
+IBXcXMJQbG3J^nIUZOPnBG2
+Z8 d/home/Local_Disk1/My_GitHub/Custom_TPM
+Z9 w1777840857
 8cores/sha256/src/rtl/sha256_core.v
 Fcores/sha256/src/rtl/sha256_core.v
-!i122 42
+!i122 56
 L0 42 509
-Z9 VDg1SIo80bB@j0V0VzS_@n1
-Z10 OL;L;2021.2_1;73
+Z10 VDg1SIo80bB@j0V0VzS_@n1
+Z11 OL;L;2021.2_1;73
 r1
 !s85 0
 31
-Z11 !s108 1777850206.000000
-Z12 !s107 cores/sha256/src/rtl/sha256_k_constants.v|cores/sha256/src/rtl/sha256_w_mem.v|cores/sha256/src/rtl/sha256_core.v|rtl/tpm_pcr_bank.v|rtl/tpm_trng.v|rtl/tpm_mem.v|rtl/tpm_sha256_wrap.v|rtl/tpm_cmd_proc.v|rtl/tpm_spi_slave.v|rtl/tpm_top.v|tb/tpm_tb.v|
-Z13 !s90 tb/tpm_tb.v|rtl/tpm_top.v|rtl/tpm_spi_slave.v|rtl/tpm_cmd_proc.v|rtl/tpm_sha256_wrap.v|rtl/tpm_mem.v|rtl/tpm_trng.v|rtl/tpm_pcr_bank.v|cores/sha256/src/rtl/sha256_core.v|cores/sha256/src/rtl/sha256_w_mem.v|cores/sha256/src/rtl/sha256_k_constants.v|
+Z12 !s108 1777855318.000000
+!s107 cores/sha256/src/rtl/sha256_k_constants.v|cores/sha256/src/rtl/sha256_w_mem.v|cores/sha256/src/rtl/sha256_core.v|rtl/tpm_pcr_bank.v|rtl/tpm_trng.v|rtl/tpm_mem.v|rtl/tpm_sha256_wrap.v|rtl/tpm_cmd_proc.v|rtl/tpm_spi_slave.v|rtl/tpm_top.v|tb/tpm_tb.v|
+Z13 !s90 +define+SIMULATION|tb/tpm_tb.v|rtl/tpm_top.v|rtl/tpm_spi_slave.v|rtl/tpm_cmd_proc.v|rtl/tpm_sha256_wrap.v|rtl/tpm_mem.v|rtl/tpm_trng.v|rtl/tpm_pcr_bank.v|cores/sha256/src/rtl/sha256_core.v|cores/sha256/src/rtl/sha256_w_mem.v|cores/sha256/src/rtl/sha256_k_constants.v|
 !i113 0
 Z14 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R4
+Z15 !s92 +define+SIMULATION -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R5
 vsha256_k_constants
 R7
 !i10b 1
 !s100 UKc^>H71Jgj=F[LS^1GU12
-IfXF`][m30<j@Q6UfSIVeT3
-R1
+I2mT;4^2JllfLP_oKPAFeM3
 R8
+R9
 8cores/sha256/src/rtl/sha256_k_constants.v
 Fcores/sha256/src/rtl/sha256_k_constants.v
-!i122 42
+!i122 56
 L0 41 90
-R9
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+Z16 !s107 cores/sha256/src/rtl/sha256_k_constants.v|cores/sha256/src/rtl/sha256_w_mem.v|cores/sha256/src/rtl/sha256_core.v|rtl/tpm_pcr_bank.v|rtl/tpm_trng.v|rtl/tpm_mem.v|rtl/tpm_sha256_wrap.v|rtl/tpm_cmd_proc.v|rtl/tpm_spi_slave.v|rtl/tpm_top.v|tb/tpm_tb.v|
 R13
 !i113 0
 R14
-R4
+R15
+R5
 vsha256_w_mem
 R7
 !i10b 1
 !s100 ZETPc4`Pk0CzSk89:TjL]3
-IF2]`TdF7Y8O;nW^LK?;Eo3
-R1
+IZ5_f;RG]eOf8kNSWHSZOP3
 R8
+R9
 8cores/sha256/src/rtl/sha256_w_mem.v
 Fcores/sha256/src/rtl/sha256_w_mem.v
-!i122 42
+!i122 56
 L0 42 196
-R9
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+R16
 R13
 !i113 0
 R14
-R4
+R15
+R5
 vtpm_cmd_proc
 R7
 !i10b 1
-!s100 IDeClQ8]e5OHCacEDnD6_1
-I<gKJlSTGNSP51nOa3zfSG0
-R1
-Z15 w1777840553
+!s100 :id]`7b^T?70h`97PWm5M3
+IESh^kAXYVT8YHXimBX1D81
+R8
+w1777855274
 8rtl/tpm_cmd_proc.v
 Frtl/tpm_cmd_proc.v
-!i122 42
-L0 61 601
-R9
+!i122 56
+L0 61 623
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+R16
 R13
 !i113 0
 R14
-R4
+R15
+R5
 vtpm_mem
 R7
 !i10b 1
-!s100 Q>a7@^3XWQ2miDT1ZaAXD3
-I76Ad6h8DA487ccVIHIAkk0
-R1
-w1777849405
+!s100 ^X2@f0OzK8n>ZMB^>IhFP0
+IC^bIOi7FMmEG7hZUQfIIL1
+R8
+w1777850776
 8rtl/tpm_mem.v
 Frtl/tpm_mem.v
-!i122 42
-L0 18 33
-R9
+!i122 56
+L0 20 37
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+R16
 R13
 !i113 0
 R14
-R4
+R15
+R5
 vtpm_pcr_bank
 R7
 !i10b 1
 !s100 [X9U4=O==5jIzPl>5;^b^2
-IAcGOf9>Ah0f>0YG]1;_J]2
-R1
-Z16 w1777061864
+IImFYDDn?i3^kbm;SO:hI72
+R8
+Z17 w1777835472
 8rtl/tpm_pcr_bank.v
 Frtl/tpm_pcr_bank.v
-!i122 42
+!i122 56
 L0 16 37
-R9
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+R16
 R13
 !i113 0
 R14
-R4
+R15
+R5
 vtpm_sha256_wrap
 R7
 !i10b 1
 !s100 DkBP<dDJ8mYSFUY[[Z3Wh2
-I;H]oWWgBH:TkMcWR88BfA3
-R1
-R16
+ISihQ?>[>B2ATofi5b<@^d2
+R8
+R17
 8rtl/tpm_sha256_wrap.v
 Frtl/tpm_sha256_wrap.v
-!i122 42
+!i122 56
 L0 27 129
-R9
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+R16
 R13
 !i113 0
 R14
-R4
+R15
+R5
 vtpm_spi_slave
 R7
 !i10b 1
 !s100 RQW[kTOmFaEzl@1^lUOYU3
-I;Fz:87kFP0RdIc`@Pdm:<2
-R1
-w1777847965
+I3U?2QZ01oABCYJCI5_Ga]0
+R8
+w1777850327
 8rtl/tpm_spi_slave.v
 Frtl/tpm_spi_slave.v
-!i122 42
+!i122 56
 L0 38 207
-R9
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+R16
 R13
 !i113 0
 R14
-R4
+R15
+R5
 vtpm_spi_slave_tb
 !s110 1777849415
 !i10b 1
@@ -258,8 +276,8 @@ w1777843639
 Ftb/tpm_spi_slave_tb.v
 !i122 41
 L0 3 159
-R9
 R10
+R11
 r1
 !s85 0
 31
@@ -268,70 +286,73 @@ r1
 !s90 tb/tpm_spi_slave_tb.v|rtl/tpm_spi_slave.v|rtl/tpm_mem.v|
 !i113 0
 R14
-R4
+R5
 vtpm_tb
 R7
 !i10b 1
-!s100 VWMFgz_5SlL3f?97_AI2T2
-I87OhbNj4P:RQkdd=:><Y73
-R1
-w1777843947
+!s100 _4[oDZ1zcYOkL<MPhzRAj2
+IhHTCzh>;Y[I9o<f4]S5JN2
+R8
+w1777851221
 8tb/tpm_tb.v
 Ftb/tpm_tb.v
-!i122 42
-L0 8 224
-R9
+!i122 56
+L0 8 225
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+R16
 R13
 !i113 0
 R14
-R4
+R15
+R5
 vtpm_top
 R7
 !i10b 1
 !s100 Yl>O?V?63d]Y^AMMFHPaW1
-IlHSHekTjX;Z1QQ@Y@VEMB2
-R1
-w1777837383
+I577G4WMZRDzS9A9OJRRRe2
+R8
+R17
 8rtl/tpm_top.v
 Frtl/tpm_top.v
-!i122 42
+!i122 56
 L0 35 145
-R9
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+R16
 R13
 !i113 0
 R14
-R4
+R15
+R5
 vtpm_trng
 R7
 !i10b 1
-!s100 H_45]Na=?5j;b40gDd5Kn1
-I:HFhmh[T@DWFm?hCV@fS30
-R1
-R15
+!s100 d3W?0TTT==K=McGz8RlE51
+Ib?abTLQ03HkPf?ca[BA3<0
+R8
+w1777851171
 8rtl/tpm_trng.v
 Frtl/tpm_trng.v
-!i122 42
-L0 15 98
-R9
+!i122 56
+L0 18 125
 R10
+R11
 r1
 !s85 0
 31
-R11
 R12
+R16
 R13
 !i113 0
 R14
-R4
+R15
+R5

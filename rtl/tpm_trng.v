@@ -8,7 +8,10 @@
 // (* keep *) stops Yosys from removing the combinational feedback loops.
 // Verify in the post-synthesis netlist that all three rings survived.
 //
-// Output: one random byte every ~(DECIM × 16) clock cycles after enable.
+// Simulation note: ring oscillator loops evaluate to X in RTL simulation.
+//   Compile with +define+SIMULATION to use $random-based byte generation.
+//
+// Output: one random byte every ~DECIM clock cycles after enable.
 // =============================================================================
 `timescale 1ns/1ps
 
@@ -20,6 +23,35 @@ module tpm_trng #(parameter DECIM = 16)(
     output reg        valid
 );
 
+`ifdef SIMULATION
+// ---------------------------------------------------------------------------
+// Simulation model: generate a fresh $random byte every DECIM clocks.
+// Ring oscillator combinational loops are X in simulation (no initial state).
+// ---------------------------------------------------------------------------
+reg [$clog2(DECIM)-1:0] sim_cnt;
+
+always @(posedge clk or negedge rstn) begin
+    if (!rstn) begin
+        sim_cnt <= 0;
+        data    <= 8'hA5;
+        valid   <= 0;
+    end else begin
+        valid <= 0;
+        if (enable) begin
+            if (sim_cnt == DECIM - 1) begin
+                sim_cnt <= 0;
+                data    <= $random;
+                valid   <= 1;
+            end else begin
+                sim_cnt <= sim_cnt + 1;
+            end
+        end else begin
+            sim_cnt <= 0;
+        end
+    end
+end
+
+`else
 // ---------------------------------------------------------------------------
 // Ring oscillators (3 cells, different lengths → different frequencies)
 // ---------------------------------------------------------------------------
@@ -51,12 +83,11 @@ assign ro2[6] = ~ro2[5];
 assign ro2[7] = ~ro2[6];
 assign ro2[8] = ~ro2[7];
 
-// XOR three oscillator outputs → combined raw bit
+// XOR three oscillator outputs
 wire raw = ro0[0] ^ ro1[0] ^ ro2[0];
 
 // ---------------------------------------------------------------------------
 // Decimation: sample raw every DECIM system clock cycles
-// Consecutive samples at lower rate reduces correlation between bits.
 // ---------------------------------------------------------------------------
 reg [$clog2(DECIM)-1:0] dcnt;
 reg                      pulse;
@@ -72,8 +103,6 @@ end
 
 // ---------------------------------------------------------------------------
 // Von Neumann de-bias
-// Consume bit-pairs: "01"→output 0, "10"→output 1, "00"/"11"→discard.
-// Removes any asymmetry in the ring oscillator duty cycle.
 // ---------------------------------------------------------------------------
 reg vn_phase, vn_prev, vn_bit, vn_ok;
 
@@ -92,7 +121,7 @@ always @(posedge clk or negedge rstn) begin
 end
 
 // ---------------------------------------------------------------------------
-// 8-bit shift register — accumulate de-biased bits into bytes
+// 8-bit shift register
 // ---------------------------------------------------------------------------
 reg [7:0] sr;
 reg [2:0] bcnt;
@@ -108,5 +137,6 @@ always @(posedge clk or negedge rstn) begin
         end
     end
 end
+`endif
 
 endmodule

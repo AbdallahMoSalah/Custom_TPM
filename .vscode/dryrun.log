@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/Local_Disk1/My_GitHub/Custom_TPM'
+make: Leaving directory '/home/Local_Disk1/My_GitHub/Custom_TPM'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

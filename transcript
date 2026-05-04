@@ -1,7 +1,6 @@
 # vsim -voptargs="+acc" -c -do "run -all; quit" work.tpm_tb 
-# Start time: 02:16:55 on May 04,2026
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Note: (vopt-143) Recognized 1 FSM in module "tpm_spi_slave(fast)".
+# Start time: 03:42:01 on May 04,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  Questa Sim-64
 # //  Version 2021.2_1 linux_x86_64 May 15 2021
 # //
@@ -30,9 +29,9 @@
 # run -all
 # 
 # === Test 1: TPM2_GetRandom (32 bytes) ===
-#   [DBG] RSP_BUF[0..13] = 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+#   [DBG] RSP_BUF[0..13] = 80 01 00 00 00 2c 00 00 00 00 00 20 24 81
 #   rspCode = 0x00000000 (expect 0x00000000)
-#   rand[0] = 0x00  rand[1] = 0x00
+#   rand[0] = 0x24  rand[1] = 0x81
 #   PASS
 # 
 # === Test 2: TPM2_PCR_Extend (PCR[0]) ===
@@ -41,16 +40,16 @@
 # 
 # === Test 3: TPM2_PCR_Read (PCR[0]) ===
 #   rspCode      = 0x00000000
-#   PCR[0][31:0] = 0x00000000
+#   PCR[0][31:0] = 0xcd6db162
 #   PASS
 # 
 # === Test 4: TPM2_HMAC (key=0xAA*32, msg=0xBB*32) ===
 #   rspCode        = 0x00000000
-#   HMAC[255:224]  = 0x00000000
+#   HMAC[255:224]  = 0x94a7c95a
 #   PASS
 # 
 # === All tests done ===
-# ** Note: $finish    : tb/tpm_tb.v(226)
-#    Time: 1080275 ns  Iteration: 0  Instance: /tpm_tb
-# End time: 02:17:02 on May 04,2026, Elapsed time: 0:00:07
+# ** Note: $finish    : tb/tpm_tb.v(227)
+#    Time: 1138425 ns  Iteration: 0  Instance: /tpm_tb
+# End time: 03:42:02 on May 04,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

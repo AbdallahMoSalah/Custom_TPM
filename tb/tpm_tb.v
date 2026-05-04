@@ -165,6 +165,7 @@ initial begin
     $display("  rand[0] = 0x%02X  rand[1] = 0x%02X", rsp[12], rsp[13]);
     if (rc == 0) $display("  PASS"); else $display("  FAIL");
 
+
     // ═══════════════════════════════════════════════════════════════════════
     $display("\n=== Test 2: TPM2_PCR_Extend (PCR[0]) ===");
     // Header(10) + handle(4) + count(4) + algID(2) + digest(32) = 52 bytes

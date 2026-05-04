@@ -256,27 +256,37 @@ always @(posedge clk or negedge rstn) begin
         S_IDLE: begin
             busy <= 0; err <= 0;
             if (start) begin
-                busy     <= 1;
-                cmd_ptr  <= CMD + 0;
-                rsp_ptr  <= RSP + 10;   // first 10 bytes = response header
-                rsp_code <= RC_OK;
-                hdr_cnt  <= 0;
-                state    <= S_HDR_ADDR;
+                busy        <= 1;
+                mem_addr    <= CMD + 0;    // FIX: pre-address byte 0 so pb_rdata is ready next cycle
+                cmd_ptr     <= CMD + 1;    // FIX: next byte to pre-address
+                rsp_ptr     <= RSP + 10;
+                rsp_code    <= RC_OK;
+                hdr_cnt     <= 0;
+                rsp_hdr_cnt <= 0;
+                state       <= S_HDR_ADDR; // wait one cycle for registered read to be valid
             end
         end
 
         // ═════════════════════════════════════════════════════════════════
         // Parse 10-byte command header
-        // S_HDR_ADDR sets the address, S_HDR_READ latches the byte.
-        // We alternate between the two states 10 times (bytes 0-9).
+        // FIX: Registered read pipeline:
+        //   Cycle N   (S_IDLE or S_HDR_READ): mem_addr <= next_addr
+        //   Cycle N+1 (S_HDR_ADDR)          : pb_rdata = mem[next_addr]  (1-cycle latency)
+        //   Cycle N+1 (S_HDR_ADDR)          : also pre-load address for next byte
+        //   Cycle N+2 (S_HDR_READ)          : latch pb_rdata
         // ═════════════════════════════════════════════════════════════════
         S_HDR_ADDR: begin
-            mem_addr <= cmd_ptr;
-            cmd_ptr  <= cmd_ptr + 1;
-            state    <= S_HDR_READ;
+            // pb_rdata is now valid (= mem[mem_addr set in prev cycle])
+            // Pre-address the NEXT byte while we wait for HDR_READ to latch
+            
+                mem_addr <= cmd_ptr;
+                cmd_ptr  <= cmd_ptr + 1;
+            
+            state <= S_HDR_READ;
         end
 
         S_HDR_READ: begin
+            // Latch the byte that was addressed 2 cycles ago (via IDLE/HDR_ADDR)
             case (hdr_cnt)
               4'd0: h_tag[15:8]   <= mem_rdata;
               4'd1: h_tag[7:0]    <= mem_rdata;
@@ -307,8 +317,10 @@ always @(posedge clk or negedge rstn) begin
 
                 CC_RAND[15:0]: begin
                     // Bytes 10-11 = bytesRequested (we cap at 32)
+                    // FIX: TRNG data starts at RSP+12 (RSP+10..11 reserved for outSize field)
                     rnd_n    <= 8'd32;
                     rnd_done <= 0;
+                    rsp_ptr  <= RSP + 12;   // FIX: was RSP+10, overwrote outSize
                     trng_en  <= 1;
                     state    <= S_RND_WAIT;
                 end
@@ -369,15 +381,25 @@ always @(posedge clk or negedge rstn) begin
         end
 
         S_RND_DONE: begin
-            // Write 2-byte output size at RSP+10 before actual random data
-            // The random data starts at RSP+12 (written above already —
-            // we pre-reserved rsp_ptr = RSP+10, so data went to RSP+10..RSP+41)
-            // Write size field:
-            mem_addr  <= RSP + 10;
-            mem_wdata <= rnd_n;
-            mem_we    <= 1;
-            rsp_size  <= 32'd12 + rnd_n;
-            state     <= S_RSP_WR;
+            // Write 2-byte outSize field at RSP+10..11 (big-endian)
+            // FIX: rnd_n bytes of random data were written to RSP+12..(12+rnd_n-1)
+            // We now write outSize as a 2-byte big-endian at RSP+10..11.
+            // Use rsp_hdr_cnt to sequence the two writes.
+            mem_we <= 1;
+            case (rsp_hdr_cnt)
+              4'd0: begin
+                mem_addr    <= RSP + 10;
+                mem_wdata   <= 8'h00;        // outSize[15:8] = 0 (rnd_n <= 32)
+                rsp_hdr_cnt <= 1;
+              end
+              default: begin
+                mem_addr    <= RSP + 11;
+                mem_wdata   <= rnd_n;        // outSize[7:0]
+                rsp_hdr_cnt <= 0;
+                rsp_size    <= 32'd12 + rnd_n;
+                state       <= S_RSP_WR;
+              end
+            endcase
         end
 
         // ═════════════════════════════════════════════════════════════════
